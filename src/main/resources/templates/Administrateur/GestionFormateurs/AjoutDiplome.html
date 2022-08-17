@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Administrateur/Graph/blank_page">
+<head>
+<meta charset="utf-8" />
+<title>Saisie Diplome</title>
+</head>
+<body layout:fragment="content">
+	
+			<br></br>
+				<br></br>
+				<br></br>
+				<h3 class="blank1"><center>Ajouter Autre Diplome</center></h3>
+						<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+							<form class="form-horizontal"  method="post" th:action="@{/admin/saveDiplomeModif(idF=${diplome.formateur.id})}"  th:object="${diplome}" >
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Nom : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="" 
+										th:field="*{nom}" /> <span class="text-danger"
+										th:errors="*{nom}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Université : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{universite}" /> <span class="text-danger"
+										th:errors="*{universite}"></span>
+									</div>
+								</div>
+								
+								
+								
+			
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Année: </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{annee}" /> <span class="text-danger"
+										th:errors="*{annee}"></span>
+									</div>
+								</div>
+								
+								
+								 <div class="panel-footer">
+							<div class="row">
+								<div class="col-sm-8 col-sm-offset-2">
+									<center>
+										<button class="btn-success btn" >Enregistrer</button>
+									</center>
+								</div>
+							</div>
+							</div>
+							</form>
+							
+							
+						</div>
+					</div>
+				
+		
+</body>
+</html>

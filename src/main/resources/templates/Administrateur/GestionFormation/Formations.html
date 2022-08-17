@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Administrateur/Graph/blank_page">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Liste Des Formations</title>
+</head> 
+	
+	<body layout:fragment="content">
+	<br></br>
+	<br></br>
+	<form th:action="@{/*/formation}"  method="get">
+				<label>Chercher par Mot clé :</label> <input type="text"
+					name="motCle" th:value="${motCle}" />
+				<button class="btn-success btn">Chercher</button>
+			</form>
+			
+			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+							<div class="panel-body no-padding">
+								<table class="table table-striped">
+									<thead>
+										<tr class="warning">
+											<th class="table-bordered text-center">Nom</th>
+											<th class="table-bordered text-center">Spécialité</th>
+											<th class="table-bordered text-center"> Période</th>
+											<th class="table-bordered text-center">Nombre des candidats</th>
+											<th class="table-bordered text-center">Cértifier</th>
+											<th class="table-bordered text-center">Prix</th>
+											<th class="table-bordered text-center">Modifier</th>
+											<th class="table-bordered text-center">Supprimer</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="u:${Listeformations}">
+											<th class="table-bordered text-center" th:text="${u.nom}"></th>
+											<th class="table-bordered text-center" th:text="${u.specialite}"></th>
+											<th class="table-bordered text-center" th:text="${u.duree} +' jours'" ></th>
+											<th class="table-bordered text-center" th:text="${u.nbrCand}"></th>
+											<th class="table-bordered text-center" th:text="${u.certifie}"></th>
+											<th class="table-bordered text-center" th:text="${u.prix} +' Dt'"></th>
+											<th class="table-bordered text-center">
+												<a th:href="@{/admin/editFormation(id=${u.nom})}">
+													<img src="../static/images/icomodif.png" th:src="@{/images/icomodif.png}" class="user-image" width="20"  />
+												</a>
+											</th>
+											<th class="table-bordered text-center" >
+												<a onclick="return confirm(' Ete vous sûre de supprimer ??')"
+												th:href="@{/admin/deleteFormation(idU=${u.nom},page=${pageCourante}, size=${size}, motCle=${motCle})}">
+													<img src="../static/images/icosupp.png" th:src="@{/images/icosupp.png}" class="user-image" width="20" />
+												</a>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+								<ul class="nav nav-pills">
+				<li class="dropdown-menu"
+					th:class="${pageCourante}==${status.index}?'active':'' "
+					th:each="pa,status:${pages}"><a
+					th:href="@{/*/formateur(page=${status.index}, size=${size}, motCle=${motCle})}"
+					th:text="${status.index}"></a></li>
+			</ul>
+							</div>
+						</div>
+	
+</body>
+</html>

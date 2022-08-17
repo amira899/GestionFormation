@@ -1,0 +1,74 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Administrateur/Graph/blank_page">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Liste Des Formateurs</title>
+</head> 
+	
+	<body layout:fragment="content">
+	<br></br>
+	<br></br>
+	<form th:action="@{/*/candidat}"  method="get">
+				<label>Chercher par Mot clé :</label> <input type="text"
+					name="motCle" th:value="${motCle}" />
+				<button class="btn-success btn">Chercher</button>
+			</form>
+			
+			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+							<div class="panel-body no-padding">
+								<table class="table table-striped">
+									<thead>
+										<tr class="warning">
+											<th class=" text-center">Photo</th>
+											<th class=" text-center">Nom et Prènom</th>
+											<th class=" text-center">N°CIN</th>
+											<th class=" text-center">Date de Naissance</th>
+											<th class=" text-center">Adresse</th>
+											<th class=" text-center">Email</th>
+											<th class=" text-center">N° Tel</th>
+																					
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="u:${ListeCandidat}">
+											<th><img class="img-circle" th:src="@{/getPhotoCandidat(id=${u.image})}" width="70" height="70" /></th>
+											<th th:text="${u.nomPre}"></th>
+											<th th:text="${u.cin}"></th>
+											<!--  <th th:text="${u.datenais}"></th>-->
+											<th class=" text-center" th:text="${#dates.format(u.datenais, 'dd-MM-yyyy')}"></th>
+											<th  class=" text-center" th:text="${u.adresse}"></th>
+											<th class=" text-center" th:text="${u.email}"></th>
+											<th class="text-center" th:text="${u.numtel}"></th>											
+											<th class="text-center" >
+												<a th:href="@{/admin/editCandidat(id=${u.id})}">
+													<img src="../static/images/editer.png" th:src="@{/images/editer.png}" class="user-image" width="20"  />
+												</a>
+											</th>
+											<th class=" text-center">
+												<a onclick="return confirm(' Ete vous sûre de supprimer ??')"
+												th:href="@{/admin/deleteCandidat(idU=${u.id},page=${pageCourante}, size=${size}, motCle=${motCle})}">
+													<img src="../static/images/delete.png" th:src="@{/images/delete.png}" class="user-image" width="20" />
+												</a>
+											</th>
+											<th class=" text-center">
+												<a th:href="@{/admin/SuiviFCandidat(id=${u.id})}">
+												<img src="../static/images/consulter.png" th:src="@{/images/consulter.jpg}" width="20"  class="user-image" />
+												</a>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+								<ul class="nav nav-pills">
+				<li class="dropdown-menu"
+					th:class="${pageCourante}==${status.index}?'active':'' "
+					th:each="pa,status:${pages}"><a
+					th:href="@{/*/formateur(page=${status.index}, size=${size}, motCle=${motCle})}"
+					th:text="${status.index}"></a></li>
+			</ul>
+							</div>
+						</div>
+	
+</body>
+</html>

@@ -1,0 +1,95 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Administrateur/Graph/blank_page">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Saisie Formateur</title>
+</head> 
+	
+	<body layout:fragment="content">
+				<br></br>
+				<br></br>
+				<br></br>
+				<h3 class="blank1"><center>Nouveau Candidat</center></h3>
+						<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+							<form class="form-horizontal" th:action="@{/admin/saveCandidat}" method="post" th:object="${candidat}" enctype="multipart/form-data">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Nom et Prènom : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="" 
+										th:field="*{nomPre}" /> <span class="text-danger"
+										th:errors="*{nomPre}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">N° CIN : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{cin}" /> <span class="text-danger"
+										th:errors="*{cin}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Nationalité : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{nationalite}" /> <span class="text-danger"
+										th:errors="*{nationalite}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="datetimepicker4" class="col-sm-2 control-label">Date de Naissance : </label>
+									<div class="col-sm-8">
+										<input type="date" class="form-control1" id="datetimepicker4" placeholder=""  
+										th:field="*{datenais}" /> <span class="text-danger"
+										th:errors="*{datenais}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="datetimepicker4" class="col-sm-2 control-label">Photo : </label>
+									<div class="col-sm-8">
+										<input  type="file" name="picture"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Adresse Postal: </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{adresse}" /> <span class="text-danger"
+										th:errors="*{adresse}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Adresse  Email : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{email}" /> <span class="text-danger"
+										th:errors="*{email}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">N°Tel : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{numtel}" /> <span class="text-danger"
+										th:errors="*{numtel}"></span>
+								</div>
+								</div>
+								 <div class="panel-footer">
+							<div class="row">
+								<div class="col-sm-8 col-sm-offset-2">
+									<center><button class="btn-success btn">Enregistrer</button></center>
+								</div>
+							</div>
+							</div>
+							</form>
+							
+							
+						</div>
+					</div>
+				
+	
+</body>
+</html>

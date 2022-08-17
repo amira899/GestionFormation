@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Administrateur/Graph/blank_page">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Saisie Certificat</title>
+
+</head>
+<body layout:fragment="content">
+	
+			<br></br>
+				<br></br>
+				<br></br>
+				<h3 class="blank1"><center>Autre Certificat</center></h3>
+						<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+							<form class="form-horizontal"   th:object="${certificat}" method="post" th:action="@{/admin/saveCertificatModif(idF=${certificat.formateur.id})}" >
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Nom : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="" 
+										th:field="*{nom}" /> <span class="text-danger"
+										th:errors="*{nom}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Spécialité : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{specialite}" /> <span class="text-danger"
+										th:errors="*{specialite}"></span>
+									</div>
+								</div>
+								
+								
+								
+			
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Année: </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{annee}" /> <span class="text-danger"
+										th:errors="*{annee}"></span>
+									</div>
+								</div>
+								
+								
+								 <div class="panel-footer">
+							<div class="row">
+								<div class="col-sm-8 col-sm-offset-2">
+									<center>
+										<button class="btn-success btn" method="post" >Enregistrer</button>
+										
+									</center>
+								</div>
+							</div>
+							</div>
+							</form>
+							
+							
+						</div>
+					</div>
+				
+		
+	
+</body>
+</html>

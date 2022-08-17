@@ -1,0 +1,100 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Administrateur/Graph/blank_page">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Suivi Formateur</title>
+</head>
+
+<body layout:fragment="content">
+	<br></br>
+	<br></br>
+	<br></br>
+
+	<div id="page-wrapper" >
+		<div class="graphs" >
+			<div class="bs-example5" data-example-id="default-media" >
+				<div class="media" id="imprime_moi">
+					
+							<h2 class="blank1"><center>Curriculum Vitae</center></h2>
+					
+					
+					<input class="form-control" type="hidden" name="id" 
+							th:value="${formateur.id}" />
+				
+	
+				<div class="profile_details">
+					<div class="profile_img">
+					<img  th:src="@{/getPhoto(id=${formateur.image})}" width="200"  />
+					</div>
+				</div>
+	
+				<div class="form-group">
+				<label> <h4> Nom et Prènom: </h4>   </label>
+				<span th:text="${formateur.nomPre}"></span>
+			</div>
+			
+			<div class="form-group">
+				<label> <h4>Date de Naissance :</h4>  </label>
+				 <span th:text="'le '+${#dates.format(formateur.datenais, 'dd MMMM yyyy')}"></span>
+			</div>
+			<div class="form-group">
+			
+				<label><h4> Adresse :   </h4> </label>
+				<span th:text="${formateur.adresse}"> </span>
+			
+		</div>
+		<div class="form-group">
+					<label> <h4>Numéro de téléphone :</h4>    </label>
+					<span th:text="${formateur.numtel}"> </span>
+			</div>
+			<div class="form-group">
+			
+					<label><h4> E-Mail : </h4>   </label>
+					<span  th:text="${formateur.email}"> </span>
+			</div>
+			<div class="form-group">
+			
+					<label><h4>Nationalité: </h4>   </label>
+					<span  th:text="${formateur.nationalite}"> </span>
+			</div>
+			
+			<div class="media_1">
+				<div class="col-md-6 media_1-left">
+						 <div class="panel_2">
+							<h3><u>Formation</u></h3>
+								<div class="form-group">
+									<div th:each="d:${ListeDiplomes}">
+										<label  th:text="${d.annee}"></label> 
+										<label th:text="${d.nom}"></label> 
+										<label th:text="${d.universite}"></label> 
+									</div>
+									<div th:each="c:${ListeCertificat}">
+										<label  th:text="${c.anne}"></label> 
+										<label th:text="${c.nom}"></label> 
+									</div>
+									<div th:each="ex:${ListeExperience}">
+										<label  th:text="${ex.entreprise}"></label> 
+										<label th:text="${ex.duree}"></label> 
+										<label th:text="${ex.grade}"></label> 
+									</div>
+								</div>	   
+							</div>
+				</div>
+			</div>
+			</div>
+		</div>	
+		</div>
+		 <div class="panel-footer">
+							<div class="row">
+								<div class="col-sm-8 col-sm-offset-2">
+									<center><button class="btn-success btn" onclick="printDiv('imprime_moi');">Imprimer</button></center>
+								</div>
+							</div>
+							</div>	
+		</div>
+	
+		<script src="../static/js/print.js"  th:src="@{/js/print.js}"></script>
+</body>
+</html>

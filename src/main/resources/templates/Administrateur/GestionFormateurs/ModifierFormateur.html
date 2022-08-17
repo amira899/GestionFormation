@@ -1,0 +1,248 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Administrateur/Graph/blank_page">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Modifier Formateur</title>
+</head> 
+	
+	<body layout:fragment="content">
+				<br></br>
+				<br></br>
+				<br></br>
+				
+						<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+							<form class="form-horizontal" th:action="@{/admin/updateFormateur}"  method="post" th:object="${formateur}" enctype="multipart/form-data">
+							<h3 class="blank1"><center>Modifier  Formateur " <span th:text="*{nomPre}"></span> "</center></h3>
+							<div class="form-group">
+						
+							<input class="form-control" type="hidden" name="id" 
+							th:value="${formateur.id}" />
+							</div>
+								<div class="form-group">
+									
+									<div class="col-sm-8">
+										<input  type="hidden" class="form-control1" id="focusedinput"  th:field="*{nomPre}" />
+									</div>
+								</div>
+								<div class="form-group">
+									
+									<div class="col-sm-8">
+										<input type="hidden" class="form-control1" id="focusedinput"  
+										th:field="*{cin}" /> 
+									</div>
+								</div>
+								
+								<div class="form-group">
+									
+									<div class="col-sm-8">
+										<input type="hidden" class="form-control1" id="datetimepicker4" 
+										th:field="*{datenais}" /> <span class="text-danger"
+										th:errors="*{datenais}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="datetimepicker4" class="col-sm-2 control-label">Photo : </label>
+									<div class="col-sm-8">
+									<input type="hidden" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{image}" />
+										<img  th:src="@{/getPhoto(id=*{image})}" width="60"  /><input  type="file" name="picture"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Adresse Postal: </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{adresse}" /> <span class="text-danger"
+										th:errors="*{adresse}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Adresse  Email : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{email}" /> <span class="text-danger"
+										th:errors="*{email}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">N°Tel : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{numtel}" /> <span class="text-danger"
+										th:errors="*{numtel}"></span>
+								</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Spécialité : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{specialite}" /> <span class="text-danger"
+										th:errors="*{specialite}"></span>
+									</div>
+								</div>
+								
+								 <div class="panel-footer">
+							<div class="row">
+								<div class="col-sm-8 col-sm-offset-2">
+									<center><button class="btn-success btn" >Enregistrer</button></center>
+									
+								</div>
+							</div>
+							
+							</div>
+				
+							</form>
+							
+						
+							<!-- Patrie Certificat -->
+							
+							
+							<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+							<div class="panel-body no-padding">
+							<h4><B>Liste des Certificats :</B> </h4>
+								<table class="table table-striped">
+									<thead>
+										<tr class="warning">
+											<th class=" text-center">Nom</th>
+											<th class=" text-center">Spécialité</th>
+											<th class=" text-center">Année</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="c:${ListeCertificats}">						
+											<th  class=" text-center" th:text="${c.nom}"></th>
+											<th class=" text-center" th:text="${c.specialite}"></th>
+											<th class=" text-center" th:text="${c.annee}"></th>
+											
+											<th class="text-center" >
+												<a th:href="@{/admin/editCertificat(id=${c.id})}">
+													<img src="../static/images/icomodif.png" th:src="@{/images/icomodif.png}" class="user-image" width="20"  />
+												</a>
+											</th>
+											<th class=" text-center">
+												<a onclick="return confirm(' Ete vous sûre de supprimer ??')"
+												th:href="@{/admin/deleteDiplome(idU=${c.id})}">
+													<img src="../static/images/icosupp.png" th:src="@{/images/icosupp.png}" class="user-image" width="20" />
+												</a>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+								<div class="text-right">
+								<a th:href="@{/admin/ajoutCertificat(idF=${formateur.id})}">
+								<img
+									src="../static/img/add.png" th:src="@{/img/add.png}"
+									class="user-image" /> 
+								</a>
+								</div>
+				
+				</div>
+										<!-- Fin Patrie Certificat -->
+				<!-- Patrie Diplome-->
+				
+				<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+							<div class="panel-body no-padding">
+							<h4><B>Liste des Diplomes :</B> </h4>
+								<table class="table table-striped">
+									<thead>
+										<tr class="warning">
+											<th class=" text-center">Nom</th>
+											<th class=" text-center">Univeristé</th>
+											<th class=" text-center">Année</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="d:${ListeDiplomes}">						
+											<th  class=" text-center" th:text="${d.nom}"></th>
+											<th class=" text-center" th:text="${d.universite}"></th>
+											<th class=" text-center" th:text="${d.annee}"></th>
+											
+											<th class="text-center" >
+												<a th:href="@{/admin/editDiplome(id=${d.id})}">
+													<img src="../static/images/icomodif.png" th:src="@{/images/icomodif.png}" class="user-image" width="20"  />
+												</a>
+											</th>
+											<th class=" text-center">
+												<a onclick="return confirm(' Ete vous sûre de supprimer ??')"
+												th:href="@{/admin/deleteDiplome(idU=${d.id})}">
+													<img src="../static/images/icosupp.png" th:src="@{/images/icosupp.png}" class="user-image" width="20" />
+												</a>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+								<div class="text-right">
+								<a th:href="@{/admin/AjouterDiplome(idF=${formateur.id})}">
+								<img
+									src="../static/img/add.png" th:src="@{/img/add.png}"
+									class="user-image" /> 
+								</a>
+								</div>
+				
+				</div>
+									<!-- Fin Patrie Diplome -->
+					
+				<!-- Patrie Expérience -->
+				<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+							<div class="panel-body no-padding">
+							<h4><B>Liste des Expériences :</B> </h4>
+								<table class="table table-striped">
+									<thead>
+										<tr class="warning">
+											<th class=" text-center">Entreprise</th>
+											<th class=" text-center">Grade</th>
+											<th class=" text-center">Période</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="ex:${ListeExperience}">						
+											<th  class=" text-center" th:text="${ex.entreprise}"></th>
+											<th class=" text-center" th:text="${ex.grade}"></th>
+											<th class=" text-center" th:text="${ex.duree}"></th>
+											
+											<th class="text-center" >
+												<a th:href="@{/admin/editExperience(id=${ex.id})}">
+													<img src="../static/images/icomodif.png" th:src="@{/images/icomodif.png}" class="user-image" width="20"  />
+												</a>
+											</th>
+											<th class=" text-center">
+												<a onclick="return confirm(' Ete vous sûre de supprimer ??')"
+												th:href="@{/admin/deleteExperience(idU=${ex.id})}">
+													<img src="../static/images/icosupp.png" th:src="@{/images/icosupp.png}" class="user-image" width="20" />
+												</a>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+								<div class="text-right">
+								<a th:href="@{/admin/ajoutExperience(idF=${formateur.id})}">
+								<img
+									src="../static/img/add.png" th:src="@{/img/add.png}"
+									class="user-image" /> 
+								</a>
+								</div>
+				
+				</div>
+											<!-- Fin Partie Expéreince -->
+				</div>
+								
+								<ul class="nav nav-pills">
+				<li class="dropdown-menu"
+					th:class="${pageCourante}==${status.index}?'active':'' "
+					th:each="pa,status:${pages}"><a
+					th:href="@{/*/formateur(page=${status.index}, size=${size}, motCle=${motCle})}"
+					th:text="${status.index}"></a></li>
+			</ul>
+			</div>
+			</div>
+							
+				</div>
+				</div>
+					
+				
+	
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Administrateur/Graph/blank_page">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Donner une Role</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<br></br>
+				<br></br>
+				<br></br>
+		<h3 class="blank1"><center>Nouveau Role</center></h3>
+				<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+					<form class="form-horizontal" th:action="@{/admin/save}" method="post">
+						<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Nom  : </label>
+									<div class="col-sm-8">
+									 <input
+										type="text" class="form-control1" id="focusedinput" placeholder=""  name="nom"
+										th:value="${utilisateur.nom}" /> <span class="text-danger"
+										th:errors="${utilisateur.nom}"></span>
+									</div>
+						</div>
+						<div class="form-group">
+							<label for="focusedinput" class="col-sm-2 control-label">Prènom : </label>
+									<div class="col-sm-8">
+									 <input
+										type="text" class="form-control1" id="focusedinput" placeholder="" name="prenom"
+										th:value="${utilisateur.prenom}" /> <span class="text-danger"
+										th:errors="${utilisateur.prenom}"></span>
+									</div>
+						</div>
+						<div class="form-group">
+							<label for="focusedinput" class="col-sm-2 control-label">Login : </label>
+									<div class="col-sm-8">
+									 <input
+										type="text" class="form-control1" id="focusedinput" placeholder="" name="login"
+										th:value="${utilisateur.login}" /> <span class="text-danger"
+										th:errors="${utilisateur.login}"></span>
+									</div>
+						</div>
+						<div class="form-group">
+							<label for="focusedinput" class="col-sm-2 control-label">Mot de Passe  : </label>
+									<div class="col-sm-8">
+									 <input
+										type="text" class="form-control1" id="focusedinput" placeholder="" name="password"
+								th:value="${utilisateur.password}" /> <span class="text-danger"
+								th:errors="${utilisateur.password}"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="focusedinput" class="col-sm-2 control-label">Type  : </label>
+									<div class="col-sm-8">
+									 <input
+										type="text" class="form-control1" id="focusedinput" placeholder="" name="type"
+								th:value="${utilisateur.type}" /> <span class="text-danger"
+								th:errors="${utilisateur.type}"></span>
+								</div>
+						</div>
+						<div class="text-center">
+							<button type="submit" class="btn btn-primary">
+								Enregistrer</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+</body>
+</html>

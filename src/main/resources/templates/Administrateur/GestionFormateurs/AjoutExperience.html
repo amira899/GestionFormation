@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Administrateur/Graph/blank_page">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Saisie Expérience</title>
+</head> 
+	
+	<body layout:fragment="content">
+				<br></br>
+				<br></br>
+				<br></br>
+				<h3 class="blank1"><center>Expérience</center></h3>
+						<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+							<form class="form-horizontal" th:action="@{/admin/saveExperience(idF=${experience.formateur.id})}" method="post" th:object="${experience}" >
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Entreprise : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder="" 
+										th:field="*{entreprise}" /> <span class="text-danger"
+										th:errors="*{entreprise}"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Grade : </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{grade}" /> <span class="text-danger"
+										th:errors="*{grade}"></span>
+									</div>
+								</div>
+								
+								
+								
+			
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Durées: </label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="focusedinput" placeholder=""  
+										th:field="*{duree}" /> <span class="text-danger"
+										th:errors="*{duree}"></span>
+									</div>
+								</div>
+								
+								
+								 <div class="panel-footer">
+							<div class="row">
+								<div class="col-sm-8 col-sm-offset-2">
+									<center><button class="btn-success btn">Enregistrer</button></center>
+								</div>
+							</div>
+							</div>
+							</form>
+							
+							
+						</div>
+					</div>
+				
+	
+</body>
+</html>
